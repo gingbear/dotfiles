@@ -21,9 +21,12 @@ if [ $__MAC__ ]; then
 
   # brew bundle install --file "$BREWFILE_PATH"
   
-  echo "start brew install"
+  echo "🍺start brew install"
   brew install openvpn
   brew install --cask google-chrome karabiner-elements visual-studio-code
+
+  echo "please create /usr/local/etc/openvpn/openvpn.conf"
+  echo "sudo brew services restart openvpn"
 
   if [ ! -d "$ICLOUD_DRIVE_PATH" ]; then
     echo "☁️"
@@ -33,11 +36,16 @@ if [ $__MAC__ ]; then
        mkdir $DOTFILES_PATh
     fi
 
-     SSH_PATH="$DOTFILES_PATH/.ssh"
+    SSH_PATH="$DOTFILES_PATH/.ssh"
     if [ ! -d "$SSH_PATH" ]; then
       mkdir $SSH_PATH
     fi
     ln -s "$SSH_PATH" $HOME/.ssh
+
+    # openvpn
+    # /Library/LaunchDaemons/homebrew.mxcl.openvpn.plist
+    #  /usr/local/etc/openvpn/openvpn.conf
+    # sudo brew services  info openvpn
   fi
 fi
 
