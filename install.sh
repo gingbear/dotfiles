@@ -43,7 +43,8 @@ if [ $__MAC__ ]; then
     echo "~/.zshrc is symbolic link"
   fi
 
-  ln -s ./.zshrc "$HOME/.zshrc" 
+  SCRIPT_DIR="$HOME/dotfiles"
+  ln -sf "$SCRIPT_DIR/.zshrc" "$HOME/.zshrc" 
 
   if [ -d "$HOME/.oh-my-zsh-custom" ]; then
     mv "$HOME/.oh-my-zsh-custom" "$HOME/.oh-my-zsh-custom.old"
@@ -53,7 +54,7 @@ if [ $__MAC__ ]; then
     echo "~/.oh-my-zsh-custom is symbolic link"
   fi
 
-  ln -s ./.oh-my-zsh-custom "$HOME/.oh-my-zsh-custom"
+  ln -sf $SCRIPT_DIR/.oh-my-zsh-custom "$HOME/.oh-my-zsh-custom"
 
 
 
