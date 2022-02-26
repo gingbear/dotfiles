@@ -40,6 +40,8 @@ if [ $__MAC__ ]; then
 
   ln -sf "$SCRIPT_DIR/.Brewfile" "$HOME/.Brewfile" 
 
+  brew bundle install
+
 
   echo "please create /usr/local/etc/openvpn/openvpn.conf"
   echo "sudo brew services restart openvpn"
