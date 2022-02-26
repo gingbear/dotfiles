@@ -28,16 +28,16 @@ if [ $__MAC__ ]; then
   if [ ! -d "$ICLOUD_DRIVE_PATH" ]; then
     echo "☁️"
     echo "please setup iCloud"
-  fi
+  else
+    if [ ! -d "$DOTFILES_PATH" ]; then
+       mkdir $DOTFILES_PATh
+    fi
 
-  if [ ! -d "$DOTFILES_PATH" ]; then
-    mkdir $DOTFILES_PATh
+     SSH_PATH="$DOTFILES_PATH/.ssh"
+    if [ ! -d "$SSH_PATH" ]; then
+      mkdir $SSH_PATH
+    fi
+    ln -s "$SSH_PATH" $HOME/.ssh
   fi
-
-  SSH_PATH="$DOTFILES_PATH/.ssh"
-  if [ ! -d "$SSH_PATH" ]; then
-    mkdir $SSH_PATH
-  fi
-  ln -s "$SSH_PATH" $HOME/.ssh
 fi
 
