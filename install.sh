@@ -28,7 +28,10 @@ if [ $__MAC__ ]; then
   echo "please create /usr/local/etc/openvpn/openvpn.conf"
   echo "sudo brew services restart openvpn"
 
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  if [ ! -d "~/.oh-my-zsh" ]; then
+     echo "install oh-my-zsh"
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  fi
 
   if [ ! -d "$ICLOUD_DRIVE_PATH" ]; then
     echo "☁️"
