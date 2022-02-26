@@ -43,7 +43,7 @@ if [ $__MAC__ ]; then
     echoh "~/.zshrc is symbolic link"
   fi
 
-  in -s ./.zshrc "$HOME/.zshrc" 
+  ln -s ./.zshrc "$HOME/.zshrc" 
 
   if [ -d "$HOME/.oh-my-zsh-custom" ]; then
     mv "$HOME/.oh-my-zsh-custom" "$HOME/.oh-my-zsh-custom.old"
