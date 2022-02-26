@@ -92,4 +92,4 @@ fi
   ln -sf $SCRIPT_DIR/.oh-my-zsh-custom "$HOME/.oh-my-zsh-custom"
 
 
-source $HOME/.zshhrc
+source $HOME/.zshrc
