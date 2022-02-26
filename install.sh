@@ -30,15 +30,15 @@ if [ $__MAC__ ]; then
   brew install openvpn jq
   brew install --cask google-chrome karabiner-elements visual-studio-code
 
-  if [ -f "$HOME/.Brewfile" ]; then
-    mv $HOME/.Brewfile $HOME/.Brewfile.old
+  if [ -f "$HOME/Brewfile" ]; then
+    mv $HOME/Brewfile $HOME/Brewfile.old
   fi
 
-  if [ -L "$HOME/.Brewfile" ]; then
-    echo "~/.Brewfile is symbolic link"
+  if [ -L "$HOME/Brewfile" ]; then
+    echo "~/Brewfile is symbolic link"
   fi
 
-  ln -sf "$SCRIPT_DIR/.Brewfile" "$HOME/.Brewfile" 
+  ln -sf "$SCRIPT_DIR/Brewfile" "$HOME/Brewfile" 
 
   brew bundle install
 
