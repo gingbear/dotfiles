@@ -18,7 +18,7 @@ if [ $__MAC__ ]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
 
-  sudo chhown -R $(whoami) /usr/local/var/homebrew
+  sudo chown -R $(whoami) /usr/local/var/homebrew
   brew upgrade
 
   # brew bundle install --file "$BREWFILE_PATH"
