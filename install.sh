@@ -14,8 +14,9 @@ if [ $__MAC__ ]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
   brew upgrade
+
+  brew bundle install --file ./.Brewfile
   
-  brew install --cask karabiner-elements
 
   if [ ! -d "$ICLOUD_DRIVE_PATH" ]; then
     echo "☁️"
