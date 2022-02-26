@@ -17,6 +17,8 @@ if [ $__MAC__ ]; then
     xcode-select --install
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
+
+  sudo chhown -R $(whoami) /usr/local/var/homebrew
   brew upgrade
 
   # brew bundle install --file "$BREWFILE_PATH"
@@ -28,10 +30,32 @@ if [ $__MAC__ ]; then
   echo "please create /usr/local/etc/openvpn/openvpn.conf"
   echo "sudo brew services restart openvpn"
 
-  if [ ! -d "~/.oh-my-zsh" ]; then
+  if [ ! -d "$HOHME/.oh-my-zsh" ]; then
      echo "install oh-my-zsh"
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   fi
+
+  if [ -f "$HOME/.zshrc" ]; then
+    mv $HOME/.zshrc $HOME/.zshrc.old
+  fi
+
+  if [ -L "$HOME/.zshrc" ]; then
+    echoh "~/.zshrc is symbolic link"
+  fi
+
+  in -s ./.zshrc "$HOME/.zshrc" 
+
+  if [ -d "$HOME/.oh-my-zsh-custom" ]; then
+    mv "$HOME/.oh-my-zsh-custom" "$HOME/.oh-my-zsh-custom.old"
+  fi
+
+  if [ -L "$HOME/.oh-my-zsh-custom"  ]; then
+    echo "~/.oh-my-zsh-custom is symbolic link"
+  fi
+
+  ln -s ./.oh-my-zsh-custom "$HOME/.oh-my-zsh-custom"
+
+
 
   if [ ! -d "$ICLOUD_DRIVE_PATH" ]; then
     echo "☁️"
