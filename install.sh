@@ -6,6 +6,10 @@ fi
 
 # for mac
 if [ $__MAC__ ]; then
+
+
+  BREWFILE_PATH="https://raw.githubusercontent.com/gingbear/dotfiles/master/.Brewfile"
+
   ICLOUD_DRIVE_PATH="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
   DOTFILES_PATH="$ICLOUD_DRIVE_PATH/dotfiles"
   # install brew command
@@ -15,8 +19,11 @@ if [ $__MAC__ ]; then
   fi
   brew upgrade
 
-  brew bundle install --file ./.Brewfile
+  # brew bundle install --file "$BREWFILE_PATH"
   
+  echo "start brew install"
+  brew install openvpn
+  brew install --cask google-chhrome karabiner-elements visual-studio-code
 
   if [ ! -d "$ICLOUD_DRIVE_PATH" ]; then
     echo "☁️"
