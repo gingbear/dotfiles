@@ -22,11 +22,13 @@ if [ $__MAC__ ]; then
   # brew bundle install --file "$BREWFILE_PATH"
   
   echo "🍺start brew install"
-  brew install openvpn
+  brew install openvpn jq
   brew install --cask google-chrome karabiner-elements visual-studio-code
 
   echo "please create /usr/local/etc/openvpn/openvpn.conf"
   echo "sudo brew services restart openvpn"
+
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
   if [ ! -d "$ICLOUD_DRIVE_PATH" ]; then
     echo "☁️"
