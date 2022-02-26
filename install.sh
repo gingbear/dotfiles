@@ -4,6 +4,9 @@ if [ "$(uname)" == 'Darwin' ]; then
   __MAC__=true
 fi
 
+
+SCRIPT_DIR="$HOME/dotfiles"
+
 # for mac
 if [ $__MAC__ ]; then
 
@@ -27,35 +30,19 @@ if [ $__MAC__ ]; then
   brew install openvpn jq
   brew install --cask google-chrome karabiner-elements visual-studio-code
 
+  if [ -f "$HOME/.Brewfile" ]; then
+    mv $HOME/.Brewfile $HOME/.Brewfile.old
+  fi
+
+  if [ -L "$HOME/.Brewfile" ]; then
+    echo "~/.Brewfile is symbolic link"
+  fi
+
+  ln -sf "$SCRIPT_DIR/.Brewfile" "$HOME/.Brewfile" 
+
+
   echo "please create /usr/local/etc/openvpn/openvpn.conf"
   echo "sudo brew services restart openvpn"
-
-  if [ ! -d "$HOHME/.oh-my-zsh" ]; then
-     echo "install oh-my-zsh"
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  fi
-
-  if [ -f "$HOME/.zshrc" ]; then
-    mv $HOME/.zshrc $HOME/.zshrc.old
-  fi
-
-  if [ -L "$HOME/.zshrc" ]; then
-    echo "~/.zshrc is symbolic link"
-  fi
-
-  SCRIPT_DIR="$HOME/dotfiles"
-  ln -sf "$SCRIPT_DIR/.zshrc" "$HOME/.zshrc" 
-
-  if [ -d "$HOME/.oh-my-zsh-custom" ]; then
-    mv "$HOME/.oh-my-zsh-custom" "$HOME/.oh-my-zsh-custom.old"
-  fi
-
-  if [ -L "$HOME/.oh-my-zsh-custom"  ]; then
-    echo "~/.oh-my-zsh-custom is symbolic link"
-  fi
-
-  ln -sf $SCRIPT_DIR/.oh-my-zsh-custom "$HOME/.oh-my-zsh-custom"
-
 
 
   if [ ! -d "$ICLOUD_DRIVE_PATH" ]; then
@@ -79,3 +66,30 @@ if [ $__MAC__ ]; then
   fi
 fi
 
+  if [ ! -d "$HOHME/.oh-my-zsh" ]; then
+     echo "install oh-my-zsh"
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  fi
+
+  if [ -f "$HOME/.zshrc" ]; then
+    mv $HOME/.zshrc $HOME/.zshrc.old
+  fi
+
+  if [ -L "$HOME/.zshrc" ]; then
+    echo "~/.zshrc is symbolic link"
+  fi
+
+  ln -sf "$SCRIPT_DIR/.zshrc" "$HOME/.zshrc" 
+
+  if [ -d "$HOME/.oh-my-zsh-custom" ]; then
+    mv "$HOME/.oh-my-zsh-custom" "$HOME/.oh-my-zsh-custom.old"
+  fi
+
+  if [ -L "$HOME/.oh-my-zsh-custom"  ]; then
+    echo "~/.oh-my-zsh-custom is symbolic link"
+  fi
+
+  ln -sf $SCRIPT_DIR/.oh-my-zsh-custom "$HOME/.oh-my-zsh-custom"
+
+
+source $HOME/.zshhrc
