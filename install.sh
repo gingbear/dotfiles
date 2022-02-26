@@ -23,7 +23,7 @@ if [ $__MAC__ ]; then
   
   echo "start brew install"
   brew install openvpn
-  brew install --cask google-chhrome karabiner-elements visual-studio-code
+  brew install --cask google-chrome karabiner-elements visual-studio-code
 
   if [ ! -d "$ICLOUD_DRIVE_PATH" ]; then
     echo "☁️"
