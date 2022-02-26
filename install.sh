@@ -40,7 +40,7 @@ if [ $__MAC__ ]; then
   fi
 
   if [ -L "$HOME/.zshrc" ]; then
-    echoh "~/.zshrc is symbolic link"
+    echo "~/.zshrc is symbolic link"
   fi
 
   ln -s ./.zshrc "$HOME/.zshrc" 
