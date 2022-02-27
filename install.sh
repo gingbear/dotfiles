@@ -30,12 +30,11 @@ if [ $__MAC__ ]; then
   brew install openvpn jq
   brew install --cask google-chrome karabiner-elements visual-studio-code
 
-  if [ -f "$HOME/Brewfile" ]; then
-    mv $HOME/Brewfile $HOME/Brewfile.old
-  fi
-
   if [ -L "$HOME/Brewfile" ]; then
     echo "~/Brewfile is symbolic link"
+    ls -al $HOME/Brewfile
+  elif [ -f "$HOME/Brewfile" ]; then
+    mv $HOME/Brewfile $HOME/Brewfile.old
   fi
 
   ln -sf "$SCRIPT_DIR/Brewfile" "$HOME/Brewfile" 
@@ -68,30 +67,26 @@ if [ $__MAC__ ]; then
   fi
 fi
 
-  if [ ! -d "$HOHME/.oh-my-zsh" ]; then
-     echo "install oh-my-zsh"
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  fi
+if [ ! -d "$HOHME/.oh-my-zsh" ]; then
+  echo "install oh-my-zsh"
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
 
-  if [ -f "$HOME/.zshrc" ]; then
-    mv $HOME/.zshrc $HOME/.zshrc.old
-  fi
+if [ -L "$HOME/.zshrc" ]; then
+  echo "~/.zshrc is symbolic link"
+elif [ -f "$HOME/.zshrc" ]; then
+  mv $HOME/.zshrc $HOME/.zshrc.old
+fi
 
-  if [ -L "$HOME/.zshrc" ]; then
-    echo "~/.zshrc is symbolic link"
-  fi
+ln -sf "$SCRIPT_DIR/.zshrc" "$HOME/.zshrc" 
 
-  ln -sf "$SCRIPT_DIR/.zshrc" "$HOME/.zshrc" 
+if [ -L "$HOME/.oh-my-zsh-custom"  ]; then
+  echo "~/.oh-my-zsh-custom is symbolic link"
+elif [ -d "$HOME/.oh-my-zsh-custom" ]; then
+  mv "$HOME/.oh-my-zsh-custom" "$HOME/.oh-my-zsh-custom.old"
+fi
 
-  if [ -d "$HOME/.oh-my-zsh-custom" ]; then
-    mv "$HOME/.oh-my-zsh-custom" "$HOME/.oh-my-zsh-custom.old"
-  fi
-
-  if [ -L "$HOME/.oh-my-zsh-custom"  ]; then
-    echo "~/.oh-my-zsh-custom is symbolic link"
-  fi
-
-  ln -sf $SCRIPT_DIR/.oh-my-zsh-custom "$HOME/.oh-my-zsh-custom"
+ln -sf $SCRIPT_DIR/.oh-my-zsh-custom "$HOME/.oh-my-zsh-custom"
 
 
-source $HOME/.zshrc
+echo  "source $HOME/.zshrc"
