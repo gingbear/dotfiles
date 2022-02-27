@@ -67,7 +67,7 @@ if [ $__MAC__ ]; then
   fi
 fi
 
-if [ ! -d "$HOHME/.oh-my-zsh" ]; then
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
   echo "install oh-my-zsh"
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
